@@ -1,0 +1,56 @@
+{
+  "supported_games": [
+    {
+      "name": "Contra",
+      "slug": "contra",
+      "year": 1987,
+      "platform": "Nintendo",
+      "description": "Run and gun action game featuring two commandos fighting alien invaders"
+    },
+    {
+      "name": "Donkey Kong",
+      "slug": "donkey-kong", 
+      "year": 1981,
+      "platform": "Nintendo",
+      "description": "Classic platformer where Mario must rescue Pauline from the giant ape Donkey Kong"
+    },
+    {
+      "name": "Galaga",
+      "slug": "galaga",
+      "year": 1981,
+      "platform": "Nintendo",
+      "description": "Space shooter where players battle swarms of alien enemies in formation"
+    },
+    {
+      "name": "Pac-Man",
+      "slug": "pacman",
+      "year": 1980,
+      "platform": "Nintendo",
+      "description": "Maze arcade game where Pac-Man eats dots while avoiding colorful ghosts"
+    },
+    {
+      "name": "BurgerTime",
+      "slug": "burgertime",
+      "year": 1982,
+      "platform": "Nintendo",
+      "description": "Chef Peter Pepper builds hamburgers while avoiding enemy food items"
+    },
+    {
+      "name": "Dig Dug",
+      "slug": "digdug",
+      "year": 1982,
+      "platform": "Nintendo", 
+      "description": "Underground maze game where players defeat enemies by inflating them or dropping rocks"
+    }
+  ],
+  "total_games": 6,
+  "last_updated": "2025-08-02",
+  "game_slugs": [
+    "contra",
+    "donkey-kong",
+    "galaga", 
+    "pacman",
+    "burgertime",
+    "digdug"
+  ]
+}
