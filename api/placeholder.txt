@@ -1,0 +1,26 @@
+API Placeholder Directory
+
+This directory is reserved for the existing PHP API that handles high score submission and retrieval.
+
+Expected API structure:
+/api/
+  - scores.php        (GET: retrieve scores, POST: submit new scores)
+  - games.php         (GET: retrieve game information)
+  - database.php      (Database connection and utilities)
+  - config.php        (API configuration)
+
+Expected API endpoints:
+
+GET /api/scores.php?game=slug
+- Returns: JSON array of high scores for specified game
+- Format: [{"player_name": "name", "score": 12345, "date_achieved": "YYYY-MM-DD", "level_reached": "5"}]
+
+POST /api/scores.php
+- Accepts: JSON with game, player_name, score, level_reached
+- Returns: Success/error response
+
+GET /api/games.php
+- Returns: JSON array of all available games
+- Format: [{"slug": "contra", "name": "Contra", "year": "1987", "developer": "Konami"}]
+
+The main application will integrate with this API once it's added to the project.

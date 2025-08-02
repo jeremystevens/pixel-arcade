@@ -1,0 +1,26 @@
+This directory will contain MIDI background music files for each game:
+
+Files needed:
+- contra.mid
+- pacman.mid
+- galaga.mid
+- donkey-kong.mid
+
+MIDI files should be:
+- Authentic chiptune/8-bit style melodies
+- Looping compositions (30-60 seconds)
+- Small file size for quick loading
+- Compatible with standard MIDI format
+
+The MIDI player will automatically:
+- Loop the music continuously
+- Provide volume control
+- Show a retro-styled player interface
+- Fall back to synthetic beep sounds if MIDI files are not available
+
+You can find appropriate MIDI files from:
+- Classic game soundtrack archives
+- Chiptune music libraries
+- Create your own using music production software
+
+If MIDI files are not available, the player will generate synthetic retro sounds using Web Audio API oscillators.

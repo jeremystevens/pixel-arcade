@@ -1,0 +1,37 @@
+This directory will contain game assets organized by game:
+
+/contra/
+  - box-art.jpg
+  - screenshot1.jpg
+  - screenshot2.jpg
+  - screenshot3.jpg
+  - screenshot4.jpg
+
+/pacman/
+  - box-art.jpg
+  - screenshot1.jpg
+  - screenshot2.jpg
+  - screenshot3.jpg
+  - screenshot4.jpg
+
+/galaga/
+  - box-art.jpg
+  - screenshot1.jpg
+  - screenshot2.jpg
+  - screenshot3.jpg
+  - screenshot4.jpg
+
+/donkey-kong/
+  - box-art.jpg
+  - screenshot1.jpg
+  - screenshot2.jpg
+  - screenshot3.jpg
+  - screenshot4.jpg
+
+Images should be:
+- Box art: 500x500px or larger, square aspect ratio
+- Screenshots: 640x480px or similar 4:3 ratio for authentic retro feel
+- Format: JPG or PNG
+- Optimized for web delivery
+
+Note: The application will gracefully handle missing images by showing retro-styled placeholders with appropriate game-themed icons.
