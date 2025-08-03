@@ -70,7 +70,7 @@ class GameFileWatcher(FileSystemEventHandler):
             self.process_current_game(event.src_path)
 
         # Handle highscores.json changes
-        elif event.src_path.endswith('highscores.json'):
+        elif event.src_path.endswith('highscores.jsonl'):
             # Debounce rapid file changes
             current_time = time.time()
             if event.src_path in self.last_modified:
@@ -219,8 +219,10 @@ class BizHawkTool:
         # Pastebin URLs for initialization scripts (non-game specific)
         self.pastebin_urls = {
             "detect_game": "https://pastebin.com/raw/ie96z6Ls",
+            "supported_games": "https://pastebin.com/raw/Z88Q1x1z",
             "base_config": "https://pastebin.com/raw/hFpK4WGx"
         }
+
 
     def create_tray_icon(self):
         """Create system tray icon."""
@@ -512,6 +514,10 @@ class BizHawkTool:
         if not self.download_detect_game_script():
             return False
 
+        # Download the supported games list
+        if not self.download_supported_games():
+            return False
+
         # Configure autoload
         if not self.configure_lua_autoload():
             return False
@@ -523,6 +529,7 @@ class BizHawkTool:
         print("\n✓ Initial setup completed successfully!")
         print("\nSetup Summary:")
         print(f"  • detect_game.lua: {self.lua_nes_dir / 'detect_game.lua'}")
+        print(f"  • supported_games.json: {self.lua_nes_dir / 'supported_games.json'}")
         print(f"  • game_mappings.json: {self.lua_nes_dir / 'game_mappings.json'}")
         print(f"  • games directory: {self.games_dir}")
         print(f"  • BizHawk config.ini: Updated with autoload settings")
@@ -553,8 +560,9 @@ class BizHawkTool:
         # Clean game name for filename
         clean_name = game_name.lower().replace(" ", "_").replace(".", "").replace("-", "_")
         clean_name = ''.join(c for c in clean_name if c.isalnum() or c == '_')
-
+        print(f"[DEBUG] Cleaned game name: {clean_name}")
         module_filename = f"{clean_name}.lua"
+        print(f"[DEBUG] Module filename: {module_filename}")
         module_path = self.games_dir / module_filename
 
         # Check if module already exists
@@ -591,6 +599,39 @@ class BizHawkTool:
             return False
         except Exception as e:
             print(f"✗ Error downloading module: {e}")
+            return False
+
+    def download_supported_games(self):
+        """Download the supported_games.json file from pastebin."""
+        url = self.pastebin_urls["supported_games"]
+        games_path = self.lua_nes_dir / "supported_games.json"
+
+        # Check if file already exists
+        if games_path.exists():
+            print(f"✓ supported_games.json already exists at {games_path}")
+            print("  Skipping download...")
+            return True
+
+        try:
+            print("📥 Downloading supported games list from Pastebin...")
+            print(f"  URL: {url}")
+            response = requests.get(url, timeout=30)
+            response.raise_for_status()
+
+            # Save the supported games file
+            with open(games_path, 'w', encoding='utf-8') as f:
+                f.write(response.text)
+
+            print(f"✅ Successfully downloaded supported_games.json")
+            print(f"   Location: {games_path}")
+            print(f"   Size: {len(response.text)} characters")
+            return True
+
+        except requests.RequestException as e:
+            print(f"✗ Error downloading supported games: {e}")
+            return False
+        except IOError as e:
+            print(f"✗ Error saving supported games file: {e}")
             return False
 
     def create_game_mappings(self):
